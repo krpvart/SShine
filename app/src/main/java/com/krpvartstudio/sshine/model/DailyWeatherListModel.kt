@@ -16,7 +16,7 @@ data class DailyWeatherListModel(
     val sunset: Int,
     val temp: Temp,
     val uvi: Double,
-    val weather: List<WeatherX>,
+    val weather: List<Weather>,
     val wind_deg: Int,
     val wind_gust: Double,
     val wind_speed: Double

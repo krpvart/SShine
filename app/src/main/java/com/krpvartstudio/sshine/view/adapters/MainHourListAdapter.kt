@@ -1,5 +1,5 @@
 package com.krpvartstudio.sshine.view.adapters
-import com.krpvartstudio.sshine.model.MainHourListModel.MainHourListModel
+import com.krpvartstudio.sshine.model.MainHourListModel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

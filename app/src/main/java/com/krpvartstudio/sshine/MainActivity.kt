@@ -8,9 +8,11 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.krpvartstudio.sshine.databinding.ActivityMainBinding
+import com.krpvartstudio.sshine.databinding.ItemMainDailyBinding
+import com.krpvartstudio.sshine.databinding.ItemMainHourlyBinding
 import com.krpvartstudio.sshine.model.DailyWeatherListModel
-import com.krpvartstudio.sshine.model.MainHourListModel.MainHourListModel
-import com.krpvartstudio.sshine.model.WeatherData
+import com.krpvartstudio.sshine.model.MainHourListModel
+import com.krpvartstudio.sshine.model.Weather
 import com.krpvartstudio.sshine.presenters.MainPresenter
 import com.krpvartstudio.sshine.view.MainView
 import com.krpvartstudio.sshine.view.adapters.MainDailyListAdapter
@@ -29,12 +31,14 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     private val locationRequest by lazy { initLocationRequest() }
     private lateinit var mLocation:Location
 
+    private lateinit var itemMainDailyBinding: ItemMainDailyBinding
+    private lateinit var itemMainHourlyBinding: ItemMainHourlyBinding
     private lateinit var activityMainBinding: ActivityMainBinding
 
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        itemMainHourlyBinding = ItemMainHourlyBinding.inflate(layoutInflater)
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
         initViews()
@@ -56,19 +60,19 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     private fun initViews() {
-//       displayCurentData(wd)  main_city_name_tv.text = "Novosibirsk"
-//        main_date_tv.text = "8 september"
-//        main_weather_image.setImageResource(R.mipmap.cloud3x)
-//        main_weather_icon.setImageResource(R.drawable.ic_sun)
-//        main_weather_description_tv.text = "Sunny"
-//        main_temp_txt.text = "25\u00B0"
-//        main_max_temp_tv.text = "30"
-//        main_min_temp_tv.text = "20"
-//        main_pressure_tv.text = "10"
-//        main_humidity_tv.text = "85%"
-//        wind_speed_tv.text = "6 m/s"
-//        main_sunrise_tv.text = "6:00"
-//        main_sunset_tv.text = "21:00"
+        activityMainBinding.mainCityNameTv.text = "Новосибирск"
+        activityMainBinding.mainDateTv.text = "13 сентября"
+        activityMainBinding.mainWeatherImage.setImageResource(R.mipmap.cloud3x)
+        activityMainBinding.mainWeatherIcon.setImageResource(R.drawable.ic_sun)
+        activityMainBinding.mainWeatherDescriptionTv.text = "Солнечно"
+        activityMainBinding.mainTempTxt.text = "25\u00B0"
+        activityMainBinding.mainMaxTempTv.text = "30"
+        activityMainBinding.mainMinTempTv.text = "20"
+        activityMainBinding.mainPressureTv.text = "10"
+        activityMainBinding.mainHumidityTv.text = "85%"
+        activityMainBinding.windSpeedTv.text = "6 м/сек"
+        activityMainBinding.mainSunriseTv.text = "6:00"
+        activityMainBinding.mainSunsetTv.text = "21:00"
     }
 
     //<-----moxy code-----
@@ -77,7 +81,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         activityMainBinding.mainCityNameTv.text = data
     }
 
-    override fun displayCurentData(data: WeatherData) {
+    override fun displayCurentData(data: Weather) {
         activityMainBinding.mainCityNameTv.text = "Новосибирск"
         activityMainBinding.mainDateTv.text = "13 сентября"
         activityMainBinding.mainWeatherImage.setImageResource(R.mipmap.cloud3x)

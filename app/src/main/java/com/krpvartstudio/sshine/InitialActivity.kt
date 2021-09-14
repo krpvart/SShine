@@ -1,6 +1,7 @@
 package com.krpvartstudio.sshine
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ class InitialActivity : AppCompatActivity() {
         checkPermission()
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
