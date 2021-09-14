@@ -1,6 +1,6 @@
 package com.krpvartstudio.sshine.business.model
 
-data class eatherDataModel(
+data class WeatherDataModel(
     val current: Current,
     val daily: List<DailyWeatherListModel>,
     val hourly: List<MainHourListModel>,

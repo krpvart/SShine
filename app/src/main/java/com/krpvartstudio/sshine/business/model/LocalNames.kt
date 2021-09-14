@@ -1,0 +1,32 @@
+package com.krpvartstudio.sshine.business.model
+
+data class LocalNames(
+    val ar: String,
+    val ascii: String,
+    val bg: String,
+    val ca: String,
+    val da: String,
+    val de: String,
+    val el: String,
+    val en: String,
+    val fa: String,
+    val feature_name: String,
+    val fi: String,
+    val fr: String,
+    val he: String,
+    val hu: String,
+    val id: String,
+    val it: String,
+    val ja: String,
+    val la: String,
+    val lt: String,
+    val mk: String,
+    val nl: String,
+    val no: String,
+    val pl: String,
+    val pt: String,
+    val ro: String,
+    val ru: String,
+    val sr: String,
+    val th: String
+)

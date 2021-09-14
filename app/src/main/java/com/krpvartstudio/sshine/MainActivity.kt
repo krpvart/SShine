@@ -13,6 +13,7 @@ import com.krpvartstudio.sshine.databinding.ItemMainHourlyBinding
 import com.krpvartstudio.sshine.business.model.DailyWeatherListModel
 import com.krpvartstudio.sshine.business.model.MainHourListModel
 import com.krpvartstudio.sshine.business.model.Weather
+import com.krpvartstudio.sshine.business.model.WeatherDataModel
 import com.krpvartstudio.sshine.presenters.MainPresenter
 import com.krpvartstudio.sshine.view.MainView
 import com.krpvartstudio.sshine.view.adapters.MainDailyListAdapter
@@ -81,7 +82,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         activityMainBinding.mainCityNameTv.text = data
     }
 
-    override fun displayCurentData(data: Weather) {
+    override fun displayCurentData(data: WeatherDataModel) {
         activityMainBinding.mainCityNameTv.text = "Новосибирск"
         activityMainBinding.mainDateTv.text = "13 сентября"
         activityMainBinding.mainWeatherImage.setImageResource(R.mipmap.cloud3x)

@@ -1,7 +1,7 @@
 package com.krpvartstudio.sshine.view
 import com.krpvartstudio.sshine.business.model.DailyWeatherListModel
 import com.krpvartstudio.sshine.business.model.MainHourListModel
-import com.krpvartstudio.sshine.business.model.Weather
+import com.krpvartstudio.sshine.business.model.WeatherDataModel
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
 
@@ -11,7 +11,7 @@ interface MainView : MvpView{
     fun displayLocation(data: String)
 
     @AddToEndSingle
-    fun displayCurentData(data: Weather)
+    fun displayCurentData(data: WeatherDataModel)
 
     @AddToEndSingle
     fun displayHourlyData(data: List<MainHourListModel>)
