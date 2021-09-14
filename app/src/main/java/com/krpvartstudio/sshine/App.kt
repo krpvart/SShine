@@ -6,7 +6,13 @@ const val APP_SETTINGS = "App settings"
 const val IS_STARTED_UP = "Is started up"
 
 class App : Application() {
+
+    //TODO Переменная БД
+
     override fun onCreate() {
+
+        //TODO Инициализация БД
+
         super.onCreate()
         val preferences = getSharedPreferences(APP_SETTINGS, MODE_PRIVATE)
         val flag = preferences.contains(IS_STARTED_UP)

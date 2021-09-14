@@ -1,10 +1,8 @@
 package com.krpvartstudio.sshine.view
 
-import com.krpvartstudio.sshine.model.DailyWeatherListModel.DailyWeatherListModel
+import com.krpvartstudio.sshine.model.DailyWeatherListModel
 import com.krpvartstudio.sshine.model.MainHourListModel.MainHourListModel
 import com.krpvartstudio.sshine.model.WeatherData
-import com.krpvartstudio.sshine.view.adapters.MainDailyListAdapter
-import com.krpvartstudio.sshine.view.adapters.MainHourListAdapter
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
 

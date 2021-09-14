@@ -1,19 +1,14 @@
 package com.krpvartstudio.sshine
-import android.Manifest
-import android.app.Activity
-import android.content.pm.PackageManager
+import android.annotation.SuppressLint
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.krpvartstudio.sshine.databinding.ActivityMainBinding
-import com.krpvartstudio.sshine.model.DailyWeatherListModel.DailyWeatherListModel
+import com.krpvartstudio.sshine.model.DailyWeatherListModel
 import com.krpvartstudio.sshine.model.MainHourListModel.MainHourListModel
 import com.krpvartstudio.sshine.model.WeatherData
 import com.krpvartstudio.sshine.presenters.MainPresenter
@@ -36,6 +31,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     private lateinit var activityMainBinding: ActivityMainBinding
 
+    @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -60,7 +56,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     private fun initViews() {
-//        main_city_name_tv.text = "Novosibirsk"
+//       displayCurentData(wd)  main_city_name_tv.text = "Novosibirsk"
 //        main_date_tv.text = "8 september"
 //        main_weather_image.setImageResource(R.mipmap.cloud3x)
 //        main_weather_icon.setImageResource(R.drawable.ic_sun)
