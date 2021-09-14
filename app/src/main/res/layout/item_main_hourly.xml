@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/main_hourly_time_tv"
+            style="@style/MainTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="17sp"
+            tools:text="10:00"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/main_hourly_temp_tv"
+            style="@style/MainTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:textSize="20sp"
+            tools:text="20\u00B0"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            >
+            <ImageView
+                android:id="@+id/main_hourly_image_ico"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                tools:src="@drawable/ic_sun"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/main_hourly_pop_tv"
+                style="@style/MainTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:textSize="12sp"
+                android:layout_marginStart="8dp"
+                tools:text="20%"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

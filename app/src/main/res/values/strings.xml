@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SShine</string>
+    <string name="min">мин</string>
+    <string name="max">макс</string>
+</resources>
