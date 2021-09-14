@@ -1,4 +1,4 @@
-package com.krpvartstudio.sshine.model
+package com.krpvartstudio.sshine.business.model
 
 data class Temp(
     val day: Double,

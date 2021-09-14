@@ -10,9 +10,9 @@ import com.google.android.gms.location.LocationResult
 import com.krpvartstudio.sshine.databinding.ActivityMainBinding
 import com.krpvartstudio.sshine.databinding.ItemMainDailyBinding
 import com.krpvartstudio.sshine.databinding.ItemMainHourlyBinding
-import com.krpvartstudio.sshine.model.DailyWeatherListModel
-import com.krpvartstudio.sshine.model.MainHourListModel
-import com.krpvartstudio.sshine.model.Weather
+import com.krpvartstudio.sshine.business.model.DailyWeatherListModel
+import com.krpvartstudio.sshine.business.model.MainHourListModel
+import com.krpvartstudio.sshine.business.model.Weather
 import com.krpvartstudio.sshine.presenters.MainPresenter
 import com.krpvartstudio.sshine.view.MainView
 import com.krpvartstudio.sshine.view.adapters.MainDailyListAdapter

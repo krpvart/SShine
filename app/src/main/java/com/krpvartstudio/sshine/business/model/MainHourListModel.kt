@@ -1,14 +1,13 @@
-package com.krpvartstudio.sshine.model
+package com.krpvartstudio.sshine.business.model
 
-data class Current(
+data class MainHourListModel(
     val clouds: Int,
     val dew_point: Double,
     val dt: Int,
     val feels_like: Double,
     val humidity: Int,
+    val pop: Int,
     val pressure: Int,
-    val sunrise: Int,
-    val sunset: Int,
     val temp: Double,
     val uvi: Int,
     val visibility: Int,

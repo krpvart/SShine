@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.krpvartstudio.sshine.R
 import com.krpvartstudio.sshine.databinding.ItemMainDailyBinding
-import com.krpvartstudio.sshine.model.DailyWeatherListModel
+import com.krpvartstudio.sshine.business.model.DailyWeatherListModel
 
 class MainDailyListAdapter : BaseAdapter<DailyWeatherListModel>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyViewHolder {

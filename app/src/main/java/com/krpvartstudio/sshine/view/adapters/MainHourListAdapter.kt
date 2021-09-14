@@ -1,9 +1,7 @@
 package com.krpvartstudio.sshine.view.adapters
-import com.krpvartstudio.sshine.model.MainHourListModel
+import com.krpvartstudio.sshine.business.model.MainHourListModel
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.krpvartstudio.sshine.R
 import com.krpvartstudio.sshine.databinding.ItemMainHourlyBinding
 
