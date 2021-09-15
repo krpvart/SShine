@@ -12,7 +12,6 @@ import com.krpvartstudio.sshine.databinding.ItemMainDailyBinding
 import com.krpvartstudio.sshine.databinding.ItemMainHourlyBinding
 import com.krpvartstudio.sshine.business.model.DailyWeatherListModel
 import com.krpvartstudio.sshine.business.model.MainHourListModel
-import com.krpvartstudio.sshine.business.model.Weather
 import com.krpvartstudio.sshine.business.model.WeatherDataModel
 import com.krpvartstudio.sshine.presenters.MainPresenter
 import com.krpvartstudio.sshine.view.MainView
