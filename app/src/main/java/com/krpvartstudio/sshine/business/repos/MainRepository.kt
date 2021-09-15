@@ -1,6 +1,7 @@
 package com.krpvartstudio.sshine.business.repos
 import com.krpvartstudio.sshine.business.ApiProvider
 import com.krpvartstudio.sshine.business.model.WeatherDataModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -23,6 +24,8 @@ class MainRepository(api: ApiProvider) : BaseRepository<MainRepository.ServerRes
             .subscribeOn(Schedulers.io())
             .doOnNext{/*TODO Тут будет добавление в БД*/}
             /*.onErrorResumeNext{} TODO Тут будет извеление объекта из БД*/
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
 
     }
 
@@ -30,4 +33,3 @@ class MainRepository(api: ApiProvider) : BaseRepository<MainRepository.ServerRes
 
     data class ServerResponse(val cityName: String, val weatherData: WeatherDataModel, val error: Throwable? = null)
 }
-
