@@ -1,5 +1,6 @@
 package com.krpvartstudio.sshine.view
 
+import com.krpvartstudio.sshine.R
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
@@ -17,4 +18,21 @@ fun Long.toDateFormatOf(format: String): String{
 }
 
 fun Double.toDegre() = (this - 273.15).roundToInt().toString()
+
 fun Double.toPercentString(extraPart: String = "") = (this*100).roundToInt().toString() + extraPart
+
+fun String.provideIcon() = when(this){
+    "01n","01d" -> R.drawable.ic_01d
+    "02n","02d" -> R.drawable.ic_02d
+    "03n","03d" -> R.drawable.ic_02d
+    "04n","04d" -> R.drawable.ic_03d
+    "09n","09d" -> R.drawable.ic_09d
+    "10n","10d" -> R.drawable.ic_10d
+    "11n","11d" -> R.drawable.ic_11d
+    "13n","13d" -> R.drawable.ic_13d
+    "50n","50d" -> R.drawable.ic_50d
+    else -> R.drawable.ic_error
+
+
+
+}

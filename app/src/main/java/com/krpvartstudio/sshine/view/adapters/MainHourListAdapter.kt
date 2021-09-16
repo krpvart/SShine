@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.krpvartstudio.sshine.R
 import com.krpvartstudio.sshine.databinding.ItemMainHourlyBinding
+import com.krpvartstudio.sshine.view.*
+import java.lang.StringBuilder
 
 class MainHourListAdapter : BaseAdapter<MainHourListModel>() {
 
@@ -14,11 +16,16 @@ class MainHourListAdapter : BaseAdapter<MainHourListModel>() {
     }
 
     inner class HourlyViewHolder(private val itemMainHourlyBinding: ItemMainHourlyBinding) : BaseViewHolder(itemMainHourlyBinding.root){
+
         override fun bindView(position: Int) {
-            itemMainHourlyBinding.mainHourlyTimeTv.text = "14:00"
-            itemMainHourlyBinding.mainHourlyTempTv.text = "25\u00B0"
-            itemMainHourlyBinding.mainHourlyPopTv.text = "50%"
-            itemMainHourlyBinding.mainHourlyImageIco.setImageResource(R.drawable.ic_sun)
+            mData[position].apply {
+                itemMainHourlyBinding.mainHourlyTimeTv.text = dt.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
+                itemMainHourlyBinding.mainHourlyTempTv.text = StringBuilder().append(temp.toDegre()).append(" \u00B0").toString()
+                itemMainHourlyBinding.mainHourlyPopTv.text = pop.toPercentString()
+                itemMainHourlyBinding.mainHourlyImageIco.setImageResource(weather[position].icon.provideIcon())
+            }
+
+
         }
     }
 }
