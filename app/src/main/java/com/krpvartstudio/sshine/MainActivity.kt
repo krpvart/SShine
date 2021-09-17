@@ -2,6 +2,7 @@ package com.krpvartstudio.sshine
 import android.annotation.SuppressLint
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationServices
@@ -23,6 +24,8 @@ import moxy.ktx.moxyPresenter
 import java.lang.StringBuilder
 
 
+const val TAGD = "Displ Loc"
+
 class MainActivity : MvpAppCompatActivity(), MainView {
 
     private val mainPresenter by moxyPresenter { MainPresenter() }
@@ -38,10 +41,14 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        itemMainDailyBinding = ItemMainDailyBinding.inflate(layoutInflater)
         itemMainHourlyBinding = ItemMainHourlyBinding.inflate(layoutInflater)
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
-        initViews()
+
+        //initViews()
+
+
         main_hourly_list.apply {
             adapter = MainHourListAdapter()
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -59,31 +66,33 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     }
 
-    private fun initViews() {
-        activityMainBinding.mainCityNameTv.text = "Новосибирск"
-        activityMainBinding.mainDateTv.text = "13 сентября"
-        activityMainBinding.mainWeatherImage.setImageResource(R.mipmap.cloud3x)
-        activityMainBinding.mainWeatherIcon.setImageResource(R.drawable.ic_sun)
-        activityMainBinding.mainWeatherDescriptionTv.text = "Солнечно"
-        activityMainBinding.mainTempTxt.text = "25\u00B0"
-        activityMainBinding.mainMaxTempTv.text = "30"
-        activityMainBinding.mainMinTempTv.text = "20"
-        activityMainBinding.mainPressureTv.text = "10"
-        activityMainBinding.mainHumidityTv.text = "85%"
-        activityMainBinding.windSpeedTv.text = "6 м/сек"
-        activityMainBinding.mainSunriseTv.text = "6:00"
-        activityMainBinding.mainSunsetTv.text = "21:00"
-    }
+//    private fun initViews() {
+//        activityMainBinding.mainCityNameTv.text = "Новосибирск"
+//        activityMainBinding.mainDateTv.text = "13 сентября"
+//        activityMainBinding.mainWeatherImage.setImageResource(R.mipmap.cloud3x)
+//        activityMainBinding.mainWeatherIcon.setImageResource(R.drawable.ic_sun)
+//        activityMainBinding.mainWeatherDescriptionTv.text = "Солнечно"
+//        activityMainBinding.mainTempTxt.text = "25\u00B0"
+//        activityMainBinding.mainMaxTempTv.text = "30"
+//        activityMainBinding.mainMinTempTv.text = "20"
+//        activityMainBinding.mainPressureTv.text = "10"
+//        activityMainBinding.mainHumidityTv.text = "85%"
+//        activityMainBinding.windSpeedTv.text = "6 м/сек"
+//        activityMainBinding.mainSunriseTv.text = "6:00"
+//        activityMainBinding.mainSunsetTv.text = "21:00"
+//    }
 
     //<-----moxy code-----
 
     override fun displayLocation(data: String) {
-        activityMainBinding.mainCityNameTv.text = data
+
+       Log.d(TAGD," сработало")
+        activityMainBinding.mainCityNameTv.text = "UKGCity"//data
     }
 
     override fun displayCurentData(data: WeatherDataModel) {
         data.apply {
-            activityMainBinding.mainDateTv.text = current.dt.toDateFormatOf(DAY_FULL_MONTH_NAME)
+            activityMainBinding.mainDateTv.text = "29081989" //current.dt.toDateFormatOf(DAY_FULL_MONTH_NAME)
             activityMainBinding.mainWeatherImage.setImageResource(R.mipmap.cloud3x)
             activityMainBinding.mainWeatherIcon.setImageResource(current.weather[0].icon.provideIcon())
             activityMainBinding.mainWeatherDescriptionTv.text = current.weather[0].description
@@ -136,6 +145,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             for (location in geo.locations){
                 mLocation = location;
                 mainPresenter.refresh(mLocation.latitude.toString(), mLocation.longitude.toString())
+
             }
         }
     }
