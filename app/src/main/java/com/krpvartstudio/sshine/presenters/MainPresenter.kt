@@ -7,14 +7,11 @@ import com.krpvartstudio.sshine.business.repos.MainRepository
 import com.krpvartstudio.sshine.view.MainView
 
 
-const val MainPrsntrLog = "Мэйн презентор"
-
 class MainPresenter: BasePresenter<MainView>() {
 
     private val repo = MainRepository(ApiProvider())
 
     override fun enable() {
-        Log.d(MainPrsntrLog, "TRUE")
         repo.dataEmitter.subscribe { response ->
             Log.d("MAINREPO", "PRESENTER ENABLED $response")
             viewState.displayLocation(response.cityName)
