@@ -1,13 +1,18 @@
 package com.krpvartstudio.sshine.business.repos
 import android.util.Log
+import com.google.gson.Gson
 import com.krpvartstudio.sshine.business.ApiProvider
 import com.krpvartstudio.sshine.business.model.WeatherDataModel
+import com.krpvartstudio.sshine.business.room.WeatherDataEntity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 const val LOG = "MAINREPO"
 class MainRepository(api: ApiProvider) : BaseRepository<MainRepository.ServerResponse>(api){
+
+    private val gson = Gson()
+    private val dbAcces = db.getWeatherDao()
 
     fun reloadData(lat: String, lon: String){
         Observable.zip(
@@ -16,6 +21,7 @@ class MainRepository(api: ApiProvider) : BaseRepository<MainRepository.ServerRes
                 it.asSequence()
                     .map { model -> model.name }
                     .toList()
+                        //TODO (LOCALE) Настроить локализациб проекта
                     .filterNotNull()
                     .first()
             },
@@ -23,8 +29,18 @@ class MainRepository(api: ApiProvider) : BaseRepository<MainRepository.ServerRes
         )
 
             .subscribeOn(Schedulers.io())
-            .doOnNext{/*TODO Тут будет добавление в БД*/}
-            /*.onErrorResumeNext{} TODO Тут будет извеление объекта из БД*/
+            .doOnNext{
+
+                dbAcces.insertWeatherData(WeatherDataEntity(data = gson.toJson(it.weatherData),city = it.cityName))
+
+            }
+            .onErrorResumeNext{
+                Observable.just(ServerResponse(
+                    dbAcces.getWeatherData().city,
+                    gson.fromJson(dbAcces.getWeatherData().data, WeatherDataModel::class.java),
+                    it
+                ))
+            }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {

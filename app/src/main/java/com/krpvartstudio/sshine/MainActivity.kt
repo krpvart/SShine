@@ -24,7 +24,7 @@ import moxy.ktx.moxyPresenter
 import java.lang.StringBuilder
 
 
-const val TAGD = "Displ Loc"
+const val TAGD = "RUN"
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 

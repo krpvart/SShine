@@ -2,18 +2,28 @@ package com.krpvartstudio.sshine
 
 import android.app.Application
 import android.content.Intent
+import androidx.room.Room
+import com.krpvartstudio.sshine.business.room.OpenWeatherDatabase
+
 const val APP_SETTINGS = "App settings"
 const val IS_STARTED_UP = "Is started up"
 
 class App : Application() {
 
-
+    companion object{
+        lateinit var db: OpenWeatherDatabase
+    }
 
     override fun onCreate() {
 
-
-
         super.onCreate()
+
+
+        //TODO Убрать к релизу
+        db = Room.databaseBuilder(this, OpenWeatherDatabase::class.java, "OpenWeatherDB")
+            .fallbackToDestructiveMigration()
+            .build()
+
         val preferences = getSharedPreferences(APP_SETTINGS, MODE_PRIVATE)
         val flag = preferences.contains(IS_STARTED_UP)
 
