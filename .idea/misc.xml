@@ -3,17 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/MyProject/app/src/main/res/drawable/bg_menu_predictions_list.xml" value="0.16296296296296298" />
-        <entry key="..\:/MyProject/app/src/main/res/drawable/ic_01d.xml" value="0.2203125" />
-        <entry key="..\:/MyProject/app/src/main/res/drawable/ic_02d.xml" value="0.2203125" />
-        <entry key="..\:/MyProject/app/src/main/res/drawable/ic_sun.xml" value="0.2203125" />
-        <entry key="..\:/MyProject/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
-        <entry key="..\:/MyProject/app/src/main/res/layout/activity_menu.xml" value="0.20416666666666666" />
-        <entry key="..\:/MyProject/app/src/main/res/layout/item_main_daily.xml" value="0.20416666666666666" />
-        <entry key="app/src/main/res/layout/activity_initial.xml" value="0.35833333333333334" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/drawable/bg_menu_favorites_list.xml" value="0.30648148148148147" />
+        <entry key="app/src/main/res/drawable/bg_menu_predictions_list.xml" value="0.30648148148148147" />
+        <entry key="app/src/main/res/drawable/ic_star_outline_24.xml" value="0.30648148148148147" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19074074074074074" />
+        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/activity_menu2.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/item_main_daily.xml" value="0.35833333333333334" />
-        <entry key="app/src/main/res/layout/item_main_hourly.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/item_main_hourly.xml" value="0.262037037037037" />
+        <entry key="app/src/main/res/layout/item_menu_citylist.xml" value="0.25" />
       </map>
     </option>
   </component>

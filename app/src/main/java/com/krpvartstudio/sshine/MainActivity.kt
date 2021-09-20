@@ -4,6 +4,7 @@ import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationRequest
@@ -14,14 +15,17 @@ import com.krpvartstudio.sshine.databinding.ItemMainHourlyBinding
 import com.krpvartstudio.sshine.business.model.DailyWeatherListModel
 import com.krpvartstudio.sshine.business.model.MainHourListModel
 import com.krpvartstudio.sshine.business.model.WeatherDataModel
+import com.krpvartstudio.sshine.databinding.ActivityMenuBinding
 import com.krpvartstudio.sshine.presenters.MainPresenter
 import com.krpvartstudio.sshine.view.*
 import com.krpvartstudio.sshine.view.adapters.MainDailyListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import com.krpvartstudio.sshine.view.adapters.MainHourListAdapter
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import java.lang.StringBuilder
+import java.util.concurrent.TimeUnit
 
 
 const val TAGD = "RUN"
@@ -37,6 +41,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     private lateinit var itemMainDailyBinding: ItemMainDailyBinding
     private lateinit var itemMainHourlyBinding: ItemMainHourlyBinding
     private lateinit var activityMainBinding: ActivityMainBinding
+    private lateinit var activityMenuBinding: ActivityMenuBinding
 
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,18 +49,19 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         itemMainDailyBinding = ItemMainDailyBinding.inflate(layoutInflater)
         itemMainHourlyBinding = ItemMainHourlyBinding.inflate(layoutInflater)
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        activityMenuBinding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        //initViews()
 
 
-        main_hourly_list.apply {
+
+        activityMainBinding.mainHourlyList.apply {
             adapter = MainHourListAdapter()
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
 
         }
-        main_daily_list.apply {
+        activityMainBinding.mainDailyList.apply {
             adapter = MainDailyListAdapter()
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
@@ -66,21 +72,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     }
 
-//    private fun initViews() {
-//        activityMainBinding.mainCityNameTv.text = "Новосибирск"
-//        activityMainBinding.mainDateTv.text = "13 сентября"
-//        activityMainBinding.mainWeatherImage.setImageResource(R.mipmap.cloud3x)
-//        activityMainBinding.mainWeatherIcon.setImageResource(R.drawable.ic_sun)
-//        activityMainBinding.mainWeatherDescriptionTv.text = "Солнечно"
-//        activityMainBinding.mainTempTxt.text = "25\u00B0"
-//        activityMainBinding.mainMaxTempTv.text = "30"
-//        activityMainBinding.mainMinTempTv.text = "20"
-//        activityMainBinding.mainPressureTv.text = "10"
-//        activityMainBinding.mainHumidityTv.text = "85%"
-//        activityMainBinding.windSpeedTv.text = "6 м/сек"
-//        activityMainBinding.mainSunriseTv.text = "6:00"
-//        activityMainBinding.mainSunsetTv.text = "21:00"
-//    }
 
     //<-----moxy code-----
 
@@ -112,11 +103,11 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     override fun displayHourlyData(data: List<MainHourListModel>) {
-        (main_hourly_list.adapter as MainHourListAdapter).updateData(data)
+        (activityMainBinding.mainHourlyList.adapter as MainHourListAdapter).updateData(data)
     }
 
     override fun displayDailyData(data: List<DailyWeatherListModel>) {
-        (main_daily_list.adapter as MainDailyListAdapter).updateData(data)
+        (activityMainBinding.mainDailyList.adapter as MainDailyListAdapter).updateData(data)
     }
 
     override fun displayError(error: Throwable) {
@@ -127,7 +118,10 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     }
 
+
+
     //-----moxy code----->
+
 
 
     //<-----Location code-----
@@ -149,8 +143,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             }
         }
     }
-
-
 
     //-----Location code----->
 

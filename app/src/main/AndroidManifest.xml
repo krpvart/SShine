@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShine">
         <activity
+            android:name=".view.MenuActivity"
+            android:exported="true" />
+        <activity
             android:name=".InitialActivity"
             android:exported="true" />
         <activity
