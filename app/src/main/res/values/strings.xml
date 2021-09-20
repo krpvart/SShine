@@ -2,4 +2,6 @@
     <string name="app_name">SShine</string>
     <string name="min">мин</string>
     <string name="max">макс</string>
+    <string name="location">Location</string>
+    <string name="comma">, %1$s</string>
 </resources>

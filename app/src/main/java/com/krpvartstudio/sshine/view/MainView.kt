@@ -1,5 +1,6 @@
 package com.krpvartstudio.sshine.view
 import com.krpvartstudio.sshine.business.model.DailyWeatherListModel
+import com.krpvartstudio.sshine.business.model.GeoCodeModel
 import com.krpvartstudio.sshine.business.model.MainHourListModel
 import com.krpvartstudio.sshine.business.model.WeatherDataModel
 import moxy.MvpView

@@ -12,6 +12,7 @@ import java.util.*
 open class BaseRepository<T>(val api: ApiProvider) {
     val dataEmitter: BehaviorSubject<T> = BehaviorSubject.create()
     protected val db by lazy { App.db }
+
     protected fun roomTransaction(
         transaction: () -> T
     )= Observable.fromCallable{ transaction()}

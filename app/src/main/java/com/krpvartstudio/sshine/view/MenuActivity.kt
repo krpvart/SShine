@@ -1,10 +1,12 @@
 package com.krpvartstudio.sshine.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.krpvartstudio.sshine.MainActivity
 import com.krpvartstudio.sshine.R
 import com.krpvartstudio.sshine.business.model.GeoCodeModel
 import com.krpvartstudio.sshine.databinding.ActivityMenuBinding
@@ -72,7 +74,24 @@ class MenuActivity : MvpAppCompatActivity(), MenuView{
         }
     }
 
-    private val searchItemClickListener = CityListAdapter.SearchItemClickListener {
+    private val searchItemClickListener = object: CityListAdapter.SearchItemClickListener {
+        override fun addToFavorite(item: GeoCodeModel) {
+            TODO("Not yet implemented")
+        }
+
+        override fun removeFromFavorite(item: GeoCodeModel) {
+            TODO("Not yet implemented")
+        }
+
+        override fun showWeatherIn(item: GeoCodeModel) {
+            val intent = Intent(this@MenuActivity, MainActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("lat",item.lat.toString())
+            bundle.putSerializable("lon",item.lon.toString())
+            intent.putExtra("COORDINATES",bundle)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in,R.anim.slide_out_left)
+        }
 
     }
 

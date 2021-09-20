@@ -7,5 +7,5 @@ data class GeoCodeModel(
     val lon: Double,
     val name: String,
     val state: String?,
-    var isFavorite: Boolean = false //TODO Будет применяться в добавлении избранных городов
+    var isFavorite: Boolean = false
 )

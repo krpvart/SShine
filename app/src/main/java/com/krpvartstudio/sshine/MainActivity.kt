@@ -1,5 +1,6 @@
 package com.krpvartstudio.sshine
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,7 @@ import com.krpvartstudio.sshine.databinding.ActivityMainBinding
 import com.krpvartstudio.sshine.databinding.ItemMainDailyBinding
 import com.krpvartstudio.sshine.databinding.ItemMainHourlyBinding
 import com.krpvartstudio.sshine.business.model.DailyWeatherListModel
+import com.krpvartstudio.sshine.business.model.GeoCodeModel
 import com.krpvartstudio.sshine.business.model.MainHourListModel
 import com.krpvartstudio.sshine.business.model.WeatherDataModel
 import com.krpvartstudio.sshine.databinding.ActivityMenuBinding
@@ -25,10 +27,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import java.lang.StringBuilder
-import java.util.concurrent.TimeUnit
 
-
-const val TAGD = "RUN"
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
@@ -53,6 +52,22 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         setContentView(activityMainBinding.root)
 
 
+        if(!intent.hasExtra("COORDINATES")){
+            geoService.requestLocationUpdates(locationRequest,geoCallback,null)
+        }else{
+            val coord = intent.extras!!.getBundle("COORDINATES")!!
+            val loc = Location("")
+            loc.latitude = coord.getString("lat")!!.toDouble()
+            loc.longitude = coord.getString("lon")!!.toDouble()
+            mLocation = loc
+            mainPresenter.refresh(lat = mLocation.latitude.toString(), lon = mLocation.longitude.toString())
+        }
+
+        activityMainBinding.mainMenuBtn.setOnClickListener{
+            val intent = Intent(this, MenuActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_left, android.R.anim.fade_out)
+        }
 
 
         activityMainBinding.mainHourlyList.apply {
@@ -68,7 +83,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         }
 
         mainPresenter.enable()
-        geoService.requestLocationUpdates(locationRequest, geoCallback, null)
+
 
     }
 
@@ -76,14 +91,12 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     //<-----moxy code-----
 
     override fun displayLocation(data: String) {
-
-       Log.d(TAGD," сработало")
-        activityMainBinding.mainCityNameTv.text = "UKGCity"//data
+        activityMainBinding.mainCityNameTv.text = data
     }
 
     override fun displayCurentData(data: WeatherDataModel) {
         data.apply {
-            activityMainBinding.mainDateTv.text = "29081989" //current.dt.toDateFormatOf(DAY_FULL_MONTH_NAME)
+            activityMainBinding.mainDateTv.text = current.dt.toDateFormatOf(DAY_FULL_MONTH_NAME)
             activityMainBinding.mainWeatherImage.setImageResource(R.mipmap.cloud3x)
             activityMainBinding.mainWeatherIcon.setImageResource(current.weather[0].icon.provideIcon())
             activityMainBinding.mainWeatherDescriptionTv.text = current.weather[0].description

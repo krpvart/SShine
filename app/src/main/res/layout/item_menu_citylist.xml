@@ -68,7 +68,7 @@
             android:background="?android:selectableItemBackgroundBorderless"
             android:backgroundTint="@android:color/transparent"
             android:checkable="true"
-            app:icon="@drawable/ic_star_outline_24"
+            app:icon="@drawable/selector_favorite_city"
             app:iconSize="38dp"/>
     </FrameLayout>
 
