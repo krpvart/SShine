@@ -1,5 +1,8 @@
 package com.krpvartstudio.sshine.business.model
 
+import com.krpvartstudio.sshine.business.room.GeoCodeEntity
+
+
 data class GeoCodeModel(
     val country: String,
     val lat: Double,

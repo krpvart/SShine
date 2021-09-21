@@ -45,7 +45,10 @@ class MenuRepository(api: ApiProvider): BaseRepository<MenuRepository.Content>(a
         }
     }
 
+
     data class Content(val data: List<GeoCodeModel>, val purpose: Int)
 
 
 }
+
+

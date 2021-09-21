@@ -12,12 +12,21 @@ import com.krpvartstudio.sshine.view.toDegre
 import java.lang.StringBuilder
 
 class MainDailyListAdapter : BaseAdapter<DailyWeatherListModel>() {
+
+
+    lateinit var clickListener: DayItemClick
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyViewHolder {
     val layoutInflater = LayoutInflater.from(parent.context)
         val itemMainDailyBinding = ItemMainDailyBinding.inflate(layoutInflater, parent, false)
         return DailyViewHolder(itemMainDailyBinding)
     }
-inner class DailyViewHolder(private val itemMainDailyBinding: ItemMainDailyBinding) : BaseViewHolder(itemMainDailyBinding.root) {
+
+    interface DayItemClick{
+        fun showDetails(data:DailyWeatherListModel)
+    }
+
+    inner class DailyViewHolder(private val itemMainDailyBinding: ItemMainDailyBinding) : BaseViewHolder(itemMainDailyBinding.root) {
     override fun bindView(position: Int) {
         mData[position].apply {
 

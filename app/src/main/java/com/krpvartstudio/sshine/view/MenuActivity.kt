@@ -25,9 +25,11 @@ class MenuActivity : MvpAppCompatActivity(), MenuView{
     private val presenter by moxyPresenter { MenuPresenter() }
     lateinit var activityMenuBinding:ActivityMenuBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu)
+        activityMenuBinding = ActivityMenuBinding.inflate(layoutInflater)
+        setContentView(activityMenuBinding.root)
 
         presenter.enable()
         presenter.getFavoriteList()
@@ -39,7 +41,7 @@ class MenuActivity : MvpAppCompatActivity(), MenuView{
             .debounce (700, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{
-                if (!it.isNullOrEmpty()) presenter.searchFor(it)
+                if (!it.isNullOrEmpty()) presenter.searchForIt(it)
             }
 
     }

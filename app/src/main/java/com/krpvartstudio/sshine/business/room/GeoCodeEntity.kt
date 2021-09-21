@@ -3,6 +3,7 @@ package com.krpvartstudio.sshine.business.room
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
+import com.krpvartstudio.sshine.business.model.GeoCodeModel
 import com.krpvartstudio.sshine.business.model.LocalNames
 
 @Entity(tableName = "GeoCode", primaryKeys = ["lat","lon"])
