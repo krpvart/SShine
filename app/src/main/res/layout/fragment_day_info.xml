@@ -88,8 +88,345 @@
                     android:includeFontPadding="false"
                     android:text="@string/feels_like"/>
             </LinearLayout>
-            
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@id/temp_first"
+                app:layout_constraintEnd_toStartOf="@id/temp_third"
+                android:id="@+id/temp_second">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/MainTextViewStyle"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/morn"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_morn_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/MainTextViewStyle"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="16sp"
+                    android:includeFontPadding="false"
+                    tools:text="-6\u00B0"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dividerColor"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@id/topic"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_morn_fl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/MainTextViewStyle"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="16sp"
+                    android:includeFontPadding="false"
+                    tools:text="-10\u00B0"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@id/temp_second"
+                app:layout_constraintEnd_toStartOf="@id/temp_four"
+                android:id="@+id/temp_third">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/MainTextViewStyle"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/day"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_day_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/MainTextViewStyle"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="16sp"
+                    android:includeFontPadding="false"
+                    tools:text="-6\u00B0"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dividerColor"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@id/topic"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_day_fl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/MainTextViewStyle"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="16sp"
+                    android:includeFontPadding="false"
+                    tools:text="-10\u00B0"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/temp_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/temp_third"
+                app:layout_constraintEnd_toStartOf="@id/temp_five">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/MainTextViewStyle"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/eve"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_eve_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/MainTextViewStyle"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="16sp"
+                    android:includeFontPadding="false"
+                    tools:text="-6\u00B0"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dividerColor"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@id/topic"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_eve_fl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/MainTextViewStyle"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="16sp"
+                    android:includeFontPadding="false"
+                    tools:text="-10\u00B0"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/temp_five"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/MainTextViewStyle"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/night"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_night_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/MainTextViewStyle"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="16sp"
+                    android:includeFontPadding="false"
+                    tools:text="-6\u00B0"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dividerColor"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@id/topic"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_night_fl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/MainTextViewStyle"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="16sp"
+                    android:includeFontPadding="false"
+                    tools:text="-10\u00B0"/>
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/second_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dividerColor"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/temp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/first_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/second_divider">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/humidity"
+                    style="@style/MainTextViewStyle"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="56 %"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    style="@style/MainTextViewStyle"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pressure"
+                    style="@style/MainTextViewStyle"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_pressure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="1080 hPa"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    style="@style/MainTextViewStyle"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/second_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/first_row">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wind"
+                    style="@style/MainTextViewStyle"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_wind_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="6 m/s"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    style="@style/MainTextViewStyle"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wind_direction"
+                    style="@style/MainTextViewStyle"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_wind_direction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="NW"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    style="@style/MainTextViewStyle"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/third_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/second_row">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sunrise"
+                    style="@style/MainTextViewStyle"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_sunrise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="06:00"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    style="@style/MainTextViewStyle"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sunset"
+                    style="@style/MainTextViewStyle"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/day_sunset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="21:00"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    style="@style/MainTextViewStyle"/>
+            </LinearLayout>
+
+        </LinearLayout>
 
 
 

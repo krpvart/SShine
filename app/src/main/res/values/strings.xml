@@ -1,9 +1,34 @@
 <resources>
     <string name="app_name">SShine</string>
-    <string name="min">мин</string>
-    <string name="max">макс</string>
+    <string name="min">min</string>
+    <string name="max">max</string>
     <string name="location">Location</string>
     <string name="comma">, %1$s</string>
     <string name="temperature">temperature</string>
     <string name="feels_like">feels_like</string>
+    <string name="morn">morn</string>
+    <string name="night">night</string>
+    <string name="eve">eve</string>
+    <string name="day">day</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="wind">Wind speed</string>
+    <string name="wind_speed_mu_ms">%1$s m/s</string>
+    <string name="wind_speed_mu_kmh">%1$s km/h</string>
+    <string name="pressure_mu_hpa">%1$s hPa</string>
+    <string name="pressure_mu_mmHg">%1$s mmHg</string>
+
+
+    <string name="wind_direction">Wind direction</string>
+    <string name="sunset">Sunset</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="temp_settings">Temperature</string>
+    <string name="c" translatable="false">C°</string>
+    <string name="f" translatable="false">F°</string>
+    <string name="m_s" translatable="false">m/s</string>
+    <string name="km_h" translatable="false">km/h</string>
+    <string name="hpa" translatable="false">hPa</string>
+    <string name="mmHg" translatable="false">mmHg</string>
+    <string name="wind_settings">Wind speed</string>
+    <string name="pressure_settings">Pressure</string>
 </resources>
