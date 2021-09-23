@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
 class MenuActivity : MvpAppCompatActivity(), MenuView{
 
     private val presenter by moxyPresenter { MenuPresenter() }
-    lateinit var activityMenuBinding:ActivityMenuBinding
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
