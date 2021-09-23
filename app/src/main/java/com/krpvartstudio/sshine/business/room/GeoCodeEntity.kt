@@ -12,8 +12,11 @@ class GeoCodeEntity(
     @Embedded val local_names: LocalNames,
     @ColumnInfo(name = "lat") val lat: Double,
     @ColumnInfo(name = "lon") val lon: Double,
-    @ColumnInfo(name = "country") val country: String,
+    @ColumnInfo(name = "country") var country: String,
     @ColumnInfo(name = "state") val state: String,
     @ColumnInfo(name = "isFavorite") val isFavorite: Boolean = false
-)
+) {
+    fun mapToModel() = GeoCodeModel(country, lat, local_names, lon, name, state,isFavorite)
+    }
+
 

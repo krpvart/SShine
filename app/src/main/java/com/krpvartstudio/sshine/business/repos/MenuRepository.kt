@@ -26,12 +26,12 @@ class MenuRepository(api: ApiProvider): BaseRepository<MenuRepository.Content>(a
     }
 
     fun add(data:GeoCodeModel){
-        getFavoriteListWith{dbAccess.add(data.mapToEntity())}
+        getFavoriteListWith{ dbAccess.add(data.mapToEntity()) }
 
     }
 
     fun remove(data: GeoCodeModel){
-        getFavoriteListWith{dbAccess.remove(data.mapToEntity())}
+        getFavoriteListWith{ dbAccess.remove(data.mapToEntity()) }
     }
 
     fun updateFavorite(){
@@ -47,7 +47,6 @@ class MenuRepository(api: ApiProvider): BaseRepository<MenuRepository.Content>(a
 
 
     data class Content(val data: List<GeoCodeModel>, val purpose: Int)
-
 
 }
 

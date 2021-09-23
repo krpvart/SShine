@@ -11,4 +11,17 @@ data class GeoCodeModel(
     val name: String,
     val state: String?,
     var isFavorite: Boolean = false
-)
+){
+    fun mapToEntity() = GeoCodeEntity(
+        name = name,
+        lat = lat,
+        lon = lon,
+        country = country,
+        state = state!!,
+        isFavorite = isFavorite,
+        local_names = local_names
+    )
+
+
+
+}

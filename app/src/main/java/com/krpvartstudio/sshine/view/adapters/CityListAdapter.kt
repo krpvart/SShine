@@ -8,6 +8,7 @@ import com.krpvartstudio.sshine.R
 import com.krpvartstudio.sshine.business.model.GeoCodeModel
 import com.krpvartstudio.sshine.databinding.ActivityMenuBinding
 import com.krpvartstudio.sshine.databinding.ItemMenuCitylistBinding
+import java.util.*
 
 class CityListAdapter: BaseAdapter<GeoCodeModel>() {
 
@@ -50,8 +51,13 @@ class CityListAdapter: BaseAdapter<GeoCodeModel>() {
             }
             mData[position].apply {
                 itemMenuCitylistBinding.state.text = if(!state.isNullOrEmpty()) itemView.context.getString(R.string.comma, state) else ""
-                itemMenuCitylistBinding.searchCity.text = local_names.ru
-                itemMenuCitylistBinding.searchCountry.text = country
+                itemMenuCitylistBinding.searchCity.text = when(Locale.getDefault().displayLanguage){
+                    "русский" -> local_names.ru?:name
+                    "English" -> local_names.en?:name
+                    else -> name
+                }
+
+                itemMenuCitylistBinding.searchCountry.text = Locale("",country).displayLanguage
                 itemMenuCitylistBinding.favorite.isChecked = isFavorite
 
 

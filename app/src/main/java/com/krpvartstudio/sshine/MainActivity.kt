@@ -49,7 +49,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         itemMainHourlyBinding = ItemMainHourlyBinding.inflate(layoutInflater)
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         activityMenuBinding = ActivityMenuBinding.inflate(layoutInflater)
-        setContentView(activityMainBinding.root)
+        setContentView(R.layout.activity_main)
 
 
         if(!intent.hasExtra("COORDINATES")){
@@ -63,23 +63,20 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             mainPresenter.refresh(lat = mLocation.latitude.toString(), lon = mLocation.longitude.toString())
         }
 
-        activityMainBinding.mainMenuBtn.setOnClickListener{
+            main_menu_btn.setOnClickListener{
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, android.R.anim.fade_out)
         }
+            main_settings_btn.setOnClickListener{
 
+            }
 
-        activityMainBinding.mainHourlyList.apply {
+            main_hourly_list.apply {
             adapter = MainHourListAdapter()
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
 
-        }
-        activityMainBinding.mainDailyList.apply {
-            adapter = MainDailyListAdapter()
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            setHasFixedSize(true)
         }
 
         mainPresenter.enable()
@@ -105,9 +102,15 @@ class MainActivity : MvpAppCompatActivity(), MainView {
                 activityMainBinding.mainMaxTempTv.text = temp.max.toDegre()
                 activityMainBinding.mainMinTempTv.text = temp.min.toDegre()
             }
-            activityMainBinding.mainPressureTv.text = StringBuilder().append(current.pressure.toString()).append(" hPa").toString()
+
+            val pressureSet = SettingsHolder.pressure
+
+            activityMainBinding.mainPressureMuTv.text = getString(pressureSet.nesureUnitStringRes,pressureSet.getValue(current.pressure.toDouble()))
+
+            val windspeedSet = SettingsHolder.windSpeed
+            activityMainBinding.windSpeedMuTv.text = getString(windspeedSet.nesureUnitStringRes, windspeedSet.getValue(current.wind_speed))
+
             activityMainBinding.mainHumidityTv.text = StringBuilder().append(current.humidity.toString()).append(" %").toString()
-            activityMainBinding.windSpeedTv.text = StringBuilder().append(current.wind_speed.toString()).append(" hPa").toString()
             activityMainBinding.mainSunriseTv.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
             activityMainBinding.mainSunsetTv.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
         }

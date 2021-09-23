@@ -3,6 +3,7 @@ package com.krpvartstudio.sshine.view
 import android.content.SharedPreferences
 import androidx.annotation.IdRes
 import com.krpvartstudio.sshine.R
+import java.util.*
 import kotlin.math.roundToInt
 
 const val TEMP = "Temp"
@@ -38,7 +39,7 @@ object SettingsHolder {
         KMH -> Setting.WIND_SPEED_KMH
         MM_HG -> Setting.PRESSURE_MMHG
         HPA -> Setting.PRESSURE_HPA
-        else -> throw IntputMismatchException()
+        else -> throw InputMismatchException()
     }
 
     const val C = 1;
@@ -55,7 +56,7 @@ object SettingsHolder {
         TEMP_CELSIUS(R.id.degreeC,R.string.c,C) {
             override fun getValue(initValue: Double) = valueToString { (initValue - 273.15) }
         },
-        WIND_SPEED_MS(R.id.speed_ms,R.string.wind_speed_mu_ms,F) {
+        WIND_SPEED_MS(R.id.speed_ms,R.string.wind_speed_mu_ms, MS) {
             override fun getValue(initValue: Double) =  valueToString { initValue }
 
         },
