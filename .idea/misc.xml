@@ -15,11 +15,13 @@
         <entry key="..\:/MyProject/app/src/main/res/layout/item_menu_citylist.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_initial.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.2537037037037037" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/fragment_daily_list.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/layout/fragment_day_info.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_main_daily.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/item_main_hourly.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/item_menu_citylist.xml" value="0.3219741480611046" />
       </map>
     </option>
   </component>

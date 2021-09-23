@@ -58,7 +58,7 @@ class CityListAdapter: BaseAdapter<GeoCodeModel>() {
                 }
 
                 itemMenuCitylistBinding.searchCountry.text = Locale("",country).displayLanguage
-                itemMenuCitylistBinding.favorite.isChecked = isFavorite
+                 itemMenuCitylistBinding.favorite.isChecked = isFavorite
 
 
             }

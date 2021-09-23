@@ -8,7 +8,6 @@
     xmlns:tools="http://schemas.android.com/tools">
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/location"
-        app:cardElevation="8dp"
         app:cardBackgroundColor="@android:color/transparent"
         android:layout_width="8dp"
         android:layout_height="wrap_content"

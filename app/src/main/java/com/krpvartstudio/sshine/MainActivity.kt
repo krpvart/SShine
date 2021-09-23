@@ -37,20 +37,11 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     private val locationRequest by lazy { initLocationRequest() }
     private lateinit var mLocation:Location
 
-    private lateinit var itemMainDailyBinding: ItemMainDailyBinding
-    private lateinit var itemMainHourlyBinding: ItemMainHourlyBinding
-    private lateinit var activityMainBinding: ActivityMainBinding
-    private lateinit var activityMenuBinding: ActivityMenuBinding
-
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        itemMainDailyBinding = ItemMainDailyBinding.inflate(layoutInflater)
-        itemMainHourlyBinding = ItemMainHourlyBinding.inflate(layoutInflater)
-        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
-        activityMenuBinding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
-
+        supportFragmentManager.beginTransaction().add(R.id.frameContainer,DailyListFragment(),DailyListFragment::class.simpleName).commit()
 
         if(!intent.hasExtra("COORDINATES")){
             geoService.requestLocationUpdates(locationRequest,geoCallback,null)
@@ -76,7 +67,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             adapter = MainHourListAdapter()
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
-
         }
 
         mainPresenter.enable()
@@ -88,42 +78,42 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     //<-----moxy code-----
 
     override fun displayLocation(data: String) {
-        activityMainBinding.mainCityNameTv.text = data
+      main_city_name_tv.text = data
     }
 
     override fun displayCurentData(data: WeatherDataModel) {
         data.apply {
-            activityMainBinding.mainDateTv.text = current.dt.toDateFormatOf(DAY_FULL_MONTH_NAME)
-            activityMainBinding.mainWeatherImage.setImageResource(R.mipmap.cloud3x)
-            activityMainBinding.mainWeatherIcon.setImageResource(current.weather[0].icon.provideIcon())
-            activityMainBinding.mainWeatherDescriptionTv.text = current.weather[0].description
-            activityMainBinding.mainTempTxt.text = current.temp.toDegre()
+            main_date_tv.text = current.dt.toDateFormatOf(DAY_FULL_MONTH_NAME)
+            main_weather_image.setImageResource(R.mipmap.cloud3x)
+            main_weather_icon.setImageResource(current.weather[0].icon.provideIcon())
+            main_weather_description_tv.text = current.weather[0].description
+            main_temp_txt.text = current.temp.toDegre()
             daily[0].apply {
-                activityMainBinding.mainMaxTempTv.text = temp.max.toDegre()
-                activityMainBinding.mainMinTempTv.text = temp.min.toDegre()
+               main_max_temp_tv.text = temp.max.toDegre()
+               main_min_temp_tv.text = temp.min.toDegre()
             }
 
             val pressureSet = SettingsHolder.pressure
 
-            activityMainBinding.mainPressureMuTv.text = getString(pressureSet.nesureUnitStringRes,pressureSet.getValue(current.pressure.toDouble()))
+            main_pressure_mu_tv.text = getString(pressureSet.nesureUnitStringRes,pressureSet.getValue(current.pressure.toDouble()))
 
             val windspeedSet = SettingsHolder.windSpeed
-            activityMainBinding.windSpeedMuTv.text = getString(windspeedSet.nesureUnitStringRes, windspeedSet.getValue(current.wind_speed))
+            wind_speed_mu_tv.text = getString(windspeedSet.nesureUnitStringRes, windspeedSet.getValue(current.wind_speed))
 
-            activityMainBinding.mainHumidityTv.text = StringBuilder().append(current.humidity.toString()).append(" %").toString()
-            activityMainBinding.mainSunriseTv.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
-            activityMainBinding.mainSunsetTv.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
+            main_pressure_mu_tv.text = StringBuilder().append(current.humidity.toString()).append(" %").toString()
+            main_sunrise_tv.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
+            main_sunset_tv.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
         }
 
 
     }
 
     override fun displayHourlyData(data: List<MainHourListModel>) {
-        (activityMainBinding.mainHourlyList.adapter as MainHourListAdapter).updateData(data)
+        (main_hourly_list.adapter as MainHourListAdapter).updateData(data)
     }
 
     override fun displayDailyData(data: List<DailyWeatherListModel>) {
-        (activityMainBinding.mainDailyList.adapter as MainDailyListAdapter).updateData(data)
+        (supportFragmentManager.findFragmentByTag(DailyListFragment::class.simpleName) as DailyListFragment).setData(data)
     }
 
     override fun displayError(error: Throwable) {

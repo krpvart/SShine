@@ -14,8 +14,8 @@ open class BaseRepository<T>(val api: ApiProvider) {
     protected val db by lazy { App.db }
 
     protected fun roomTransaction(
-        transaction: () -> T
-    )= Observable.fromCallable{ transaction()}
+        transaction: () -> T)
+        = Observable.fromCallable   { transaction()}
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe{dataEmitter.onNext(it)}

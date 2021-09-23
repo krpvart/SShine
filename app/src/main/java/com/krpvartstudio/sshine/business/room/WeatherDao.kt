@@ -5,7 +5,7 @@ import androidx.room.*
 @Dao
 interface WeatherDao {
 
-    @Query("SELECT * FROM WeatherData WHERE id=1")
+    @Query("SELECT * FROM WeatherData WHERE id= 1")
     fun getWeatherData():WeatherDataEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

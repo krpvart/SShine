@@ -48,7 +48,7 @@ object SettingsHolder {
     const val KMH = 4;
     const val MM_HG = 5;
     const val HPA = 6;
-    enum class Setting(@IdRes val chekedViewId: Int, @IdRes val nesureUnitStringRes: Int, val prefConst: Int) {
+    enum class Setting(@IdRes val cheсkedViewId: Int, @IdRes val nesureUnitStringRes: Int, val prefConst: Int) {
 
         TEMP_FAHRENHEIT(R.id.degreeF,R.string.f,F) {
             override fun getValue(initValue: Double) = valueToString { (initValue - 273.15) * (9 / 5) * 32 }

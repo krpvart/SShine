@@ -1,11 +1,7 @@
 package com.krpvartstudio.sshine.business.repos
-
-import android.app.DownloadManager
 import com.krpvartstudio.sshine.business.ApiProvider
 import com.krpvartstudio.sshine.business.model.GeoCodeModel
-import com.krpvartstudio.sshine.business.room.GeoCodeDao
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 const val SAVED = 1

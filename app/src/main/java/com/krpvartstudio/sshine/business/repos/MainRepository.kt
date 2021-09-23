@@ -7,16 +7,21 @@ import com.krpvartstudio.sshine.business.room.WeatherDataEntity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.*
 
 
 class MainRepository(api: ApiProvider) : BaseRepository<MainRepository.ServerResponse>(api){
 
     private val gson = Gson()
     private val dbAcces = db.getWeatherDao()
+    private val defLanguage = when (Locale.getDefault().displayLanguage) {
+        "русский" -> "ru"
+        else -> "en"
+    }
 
     fun reloadData(lat: String, lon: String){
         Observable.zip(
-            api.providerWeatherApi().getWeatherForecast(lat, lon),
+            api.providerWeatherApi().getWeatherForecast(lat, lon, lang = defLanguage),
             api.providerGeoCodeApi().getCityByCoord(lat, lon).map {
                 it.asSequence()
                     .map { model -> model.name }

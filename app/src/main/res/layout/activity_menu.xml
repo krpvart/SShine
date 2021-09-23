@@ -57,7 +57,7 @@
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <androidx.recyclerview.widget.RecyclerView
+             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/predictions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.TransitionInflater
 import com.krpvartstudio.sshine.business.model.DailyWeatherListModel
 import com.krpvartstudio.sshine.view.adapters.MainDailyListAdapter
 import kotlinx.android.synthetic.main.fragment_daily_list.*
@@ -13,6 +14,14 @@ import kotlinx.android.synthetic.main.fragment_daily_list.*
 class DailyListFragment: DailyBaseFragment<List<DailyWeatherListModel>>() {
 
     private var dailyAdapter = MainDailyListAdapter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        exitTransition = inflater.inflateTransition(R.transition.slide_out_right)
+        enterTransition = inflater.inflateTransition(R.transition.slide_right)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +37,7 @@ class DailyListFragment: DailyBaseFragment<List<DailyWeatherListModel>>() {
             adapter = dailyAdapter
             layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
+            dailyAdapter.clickListener = clickListener
         }
 
         mData?.let { updateView() }
@@ -37,6 +47,7 @@ class DailyListFragment: DailyBaseFragment<List<DailyWeatherListModel>>() {
 
     override fun updateView() {
         dailyAdapter.updateData(mData!!)
+
     }
 
     private val clickListener = object : MainDailyListAdapter.DayItemClick{

@@ -28,22 +28,19 @@ class MenuActivity : MvpAppCompatActivity(), MenuView{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityMenuBinding = ActivityMenuBinding.inflate(layoutInflater)
-        setContentView(activityMenuBinding.root)
-
+        setContentView(R.layout.activity_menu)
         presenter.enable()
         presenter.getFavoriteList()
-        initCityList(activityMenuBinding.predictions)
-        initCityList(activityMenuBinding.favorites)
+        initCityList(predictions)
+        initCityList(favorites)
 
-        activityMenuBinding.searchField.createObservable()
+        search_field.createObservable()
             .doOnNext{setLoading(true)}
             .debounce (700, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{
                 if (!it.isNullOrEmpty()) presenter.searchForIt(it)
             }
-
     }
 
     override fun onBackPressed() {
@@ -54,7 +51,7 @@ class MenuActivity : MvpAppCompatActivity(), MenuView{
 
     //<-----moxy code-----
     override fun setLoading(flag: Boolean) {
-        loading.isActivated = true
+        loading.isActivated = flag
         loading.visibility = if(flag) View.VISIBLE else View.GONE
     }
 

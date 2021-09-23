@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SShine</string>
+    <string name="min">мин</string>
+    <string name="max">макс</string>
+    <string name="location">Местоположение</string>
+    <string name="temperature">Температура</string>
+    <string name="feels_like">Ощущаяется как</string>
+    <string name="morn">утро</string>
+    <string name="night">ночь</string>
+    <string name="eve">вечер</string>
+    <string name="day">день</string>
+    <string name="humidity">Влажность</string>
+    <string name="pressure">Давление</string>
+    <string name="wind">Скорость ветра</string>
+    <string name="wind_speed_mu_ms">%1$s м/с</string>
+    <string name="wind_speed_mu_kmh">%1$s км/ч</string>
+    <string name="pressure_mu_hpa">%1$s гПа</string>
+    <string name="pressure_mu_mmHg">%1$s мм рт.ст.</string>
+    <string name="wind_direction">Направление ветра</string>
+    <string name="sunset">Восход</string>
+    <string name="sunrise">Закат</string>
+    <string name="temp_settings">Температура</string>
+    <string name="pressure_settings">Давление</string>
+    <string name="wind_settings">Скорость ветра</string>
+</resources>

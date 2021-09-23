@@ -15,8 +15,14 @@ class GeoCodeEntity(
     @ColumnInfo(name = "country") var country: String,
     @ColumnInfo(name = "state") val state: String,
     @ColumnInfo(name = "isFavorite") val isFavorite: Boolean = false
-) {
-    fun mapToModel() = GeoCodeModel(country, lat, local_names, lon, name, state,isFavorite)
-    }
+){ fun mapToModel() = GeoCodeModel(
+    country = country,
+    lat = lat,
+    local_names = local_names,
+    lon = lon,
+    name = name,
+    state = state,
+    isFavorite = isFavorite)
+}
 
 

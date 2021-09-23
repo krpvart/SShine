@@ -3,7 +3,7 @@
     <string name="min">min</string>
     <string name="max">max</string>
     <string name="location">Location</string>
-    <string name="comma">, %1$s</string>
+    <string name="comma" translatable="false">, %1$s</string>
     <string name="temperature">temperature</string>
     <string name="feels_like">feels_like</string>
     <string name="morn">morn</string>
@@ -23,6 +23,10 @@
     <string name="sunset">Sunset</string>
     <string name="sunrise">Sunrise</string>
     <string name="temp_settings">Temperature</string>
+    
+    
+    
+    <string name="degree_symbol" translatable="false">%1$s\u000B0 </string>
     <string name="c" translatable="false">C°</string>
     <string name="f" translatable="false">F°</string>
     <string name="m_s" translatable="false">m/s</string>
