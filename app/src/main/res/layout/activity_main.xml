@@ -298,7 +298,7 @@
 
                 <ImageView
                     style="@style/AdditionalWeatherInfoIconStyle"
-                    android:src="@drawable/ic_sunrise_24" />
+                    android:src="@drawable/ic_sunset_24" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/main_sunrise_tv"
@@ -319,7 +319,7 @@
 
                 <ImageView
                     style="@style/AdditionalWeatherInfoIconStyle"
-                    android:src="@drawable/ic_sunset_24" />
+                    android:src="@drawable/ic_sunrise_24" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/main_sunset_tv"

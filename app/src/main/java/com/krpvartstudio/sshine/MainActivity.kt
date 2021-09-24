@@ -46,7 +46,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         setContentView(R.layout.activity_main)
 
         initBottomSheets()
-        initSwipeRefresh()
+
 
         refresh.isRefreshing = true
         supportFragmentManager.beginTransaction().add(R.id.frameContainer,DailyListFragment(),DailyListFragment::class.simpleName).commit()
@@ -76,9 +76,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
         }
-
         mainPresenter.enable()
-
+        initSwipeRefresh()
 
     }
 
@@ -89,6 +88,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
       main_city_name_tv.text = data
     }
 
+    @SuppressLint("ResourceType")
     override fun displayCurentData(data: WeatherDataModel) {
         data.apply {
             main_date_tv.text = current.dt.toDateFormatOf(DAY_FULL_MONTH_NAME)
@@ -100,17 +100,13 @@ class MainActivity : MvpAppCompatActivity(), MainView {
                main_max_temp_tv.text = temp.max.toDegre()
                main_min_temp_tv.text = temp.min.toDegre()
             }
-
             val pressureSet = SettingsHolder.pressure
-
             main_pressure_mu_tv.text = getString(pressureSet.nesureUnitStringRes,pressureSet.getValue(current.pressure.toDouble()))
-
             val windspeedSet = SettingsHolder.windSpeed
             wind_speed_mu_tv.text = getString(windspeedSet.nesureUnitStringRes, windspeedSet.getValue(current.wind_speed))
-
-            main_pressure_mu_tv.text = StringBuilder().append(current.humidity.toString()).append(" %").toString()
+            main_humidity_tv.text = StringBuilder().append(current.humidity.toString()).append(" %").toString()
             main_sunrise_tv.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
-            main_sunset_tv.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
+            main_sunset_tv.text = current.sunset.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
         }
 
 
