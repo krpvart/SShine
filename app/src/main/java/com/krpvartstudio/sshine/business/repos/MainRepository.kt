@@ -24,9 +24,13 @@ class MainRepository(api: ApiProvider) : BaseRepository<MainRepository.ServerRes
             api.providerWeatherApi().getWeatherForecast(lat, lon, lang = defLanguage),
             api.providerGeoCodeApi().getCityByCoord(lat, lon).map {
                 it.asSequence()
-                    .map { model -> model.name }
+                    .map { model ->
+                        when (Locale.getDefault().displayLanguage){
+                            "русский" -> model.local_names.ru
+                            "English" -> model.local_names.en
+                        else -> model.name}
+                        }
                     .toList()
-                        //TODO (LOCALE) Настроить локализациб проекта
                     .filterNotNull()
                     .first()
             },
@@ -50,7 +54,6 @@ class MainRepository(api: ApiProvider) : BaseRepository<MainRepository.ServerRes
                     dataEmitter.onNext(it)
                 },
                 {
-                    Log.d("", "reloadData: $it")
                 }
             )
 

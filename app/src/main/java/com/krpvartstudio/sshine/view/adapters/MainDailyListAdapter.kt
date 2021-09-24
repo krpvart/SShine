@@ -43,8 +43,8 @@ class MainDailyListAdapter : BaseAdapter<DailyWeatherListModel>() {
                     itemMainDailyBinding.itemDailyPopTv.text = pop.toPercentString("%")
                 }
                 itemMainDailyBinding.itemDailyWeatherConditionIcon.setImageResource(weather[0].icon.provideIcon())
-                itemMainDailyBinding.itemDailyMaxtempTv.text = StringBuilder().append(temp.max.toDegre()).append(" \u00B0").toString()
-                itemMainDailyBinding.itemDailyMintempTv.text = StringBuilder().append(temp.min.toDegre()).append(" \u00B0").toString()
+                itemMainDailyBinding.itemDailyMaxtempTv.text = StringBuilder().append(temp.max.toDegre()).append("\u00B0").toString()
+                itemMainDailyBinding.itemDailyMintempTv.text = StringBuilder().append(temp.min.toDegre()).append("\u00B0").toString()
             }
         }
     }

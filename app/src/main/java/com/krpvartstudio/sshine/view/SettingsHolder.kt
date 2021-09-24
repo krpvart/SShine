@@ -48,7 +48,7 @@ object SettingsHolder {
     const val KMH = 4;
     const val MM_HG = 5;
     const val HPA = 6;
-    enum class Setting(@IdRes val cheсkedViewId: Int, @IdRes val nesureUnitStringRes: Int, val prefConst: Int) {
+    enum class Setting(@IdRes val  cheсkedViewId: Int, @IdRes val nesureUnitStringRes: Int, val prefConst: Int) {
 
         TEMP_FAHRENHEIT(R.id.degreeF,R.string.f,F) {
             override fun getValue(initValue: Double) = valueToString { (initValue - 273.15) * (9 / 5) * 32 }
@@ -60,13 +60,13 @@ object SettingsHolder {
             override fun getValue(initValue: Double) =  valueToString { initValue }
 
         },
-        WIND_SPEED_KMH(R.id.speed_kmh,R.string.wind_speed_mu_kmh,F) {
+        WIND_SPEED_KMH(R.id.speed_kmh,R.string.wind_speed_mu_kmh, KMH) {
             override fun getValue(initValue: Double) = valueToString { initValue * 3.6 }
         },
-        PRESSURE_MMHG(R.id.pressure_mmHg,R.string.pressure_mu_mmHg,F) {
+        PRESSURE_MMHG(R.id.pressure_mmHg,R.string.pressure_mu_mmHg, MM_HG) {
             override fun getValue(initValue: Double) = valueToString { initValue / 1.33322387415}
         },
-        PRESSURE_HPA(R.id.degreeF,R.string.pressure_mu_hpa,F) {
+        PRESSURE_HPA(R.id.pressure_hPa,R.string.pressure_mu_hpa, HPA) {
             override fun getValue(initValue: Double) = valueToString { initValue }
         };
 

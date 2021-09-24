@@ -32,37 +32,45 @@ class CityListAdapter: BaseAdapter<GeoCodeModel>() {
 
     }
 
-    inner class CityListHolder(private val itemMenuCitylistBinding: ItemMenuCitylistBinding): BaseViewHolder(itemMenuCitylistBinding.root){
+    inner class CityListHolder(private val itemMenuCitylistBinding: ItemMenuCitylistBinding) :
+        BaseViewHolder(itemMenuCitylistBinding.root) {
 
         override fun bindView(position: Int) {
-            itemMenuCitylistBinding.location.setOnClickListener {
-                clickListener.showWeatherIn(mData[position])
-            }
-            itemMenuCitylistBinding.favorite.setOnClickListener{
-                val item = mData[position]
-                when((it as MaterialButton).isChecked){
-                    true->{
-                        item.isFavorite=true
-                        clickListener.addToFavorite(item)
-                    }
-                    false->{
-                        item.isFavorite=false
-                        clickListener.removeFromFavorite(item)
+            itemMenuCitylistBinding.apply {
+                location.setOnClickListener {
+                    clickListener.showWeatherIn(mData[position])
+                }
+                favorite.setOnClickListener {
+                    val item = mData[position]
+                    when ((it as MaterialButton).isChecked) {
+                        true -> {
+                            item.isFavorite = true
+                            clickListener.addToFavorite(item)
+                        }
+                        false -> {
+                            item.isFavorite = false
+                            clickListener.removeFromFavorite(item)
+                        }
                     }
                 }
-            }
-            mData[position].apply {
-                itemMenuCitylistBinding.state.text = if(!state.isNullOrEmpty()) itemMenuCitylistBinding.root.context.getString(R.string.comma, state) else ""
-                itemMenuCitylistBinding.searchCity.text = when(Locale.getDefault().displayLanguage){
-                    "русский" -> local_names.ru?:name
-                    "English" -> local_names.en?:name
-                    else -> name
+                mData[position].apply {
+                    itemMenuCitylistBinding.state.text =
+                        if (!state.isNullOrEmpty()) itemMenuCitylistBinding.root.context.getString(
+                            R.string.comma,
+                            state
+                        ) else ""
+                    itemMenuCitylistBinding.searchCity.text =
+                        when (Locale.getDefault().displayLanguage) {
+                            "русский" -> local_names.ru ?: name
+                            "English" -> local_names.en ?: name
+                            else -> name
+                        }
+
+                    itemMenuCitylistBinding.searchCountry.text = country
+                    itemMenuCitylistBinding.favorite.isChecked = isFavorite
+
+
                 }
-
-                itemMenuCitylistBinding.searchCountry.text = Locale("",country).displayLanguage
-                itemMenuCitylistBinding.favorite.isChecked = isFavorite
-
-
             }
         }
 

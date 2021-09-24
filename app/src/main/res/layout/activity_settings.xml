@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_settings">
+    tools:context=".SettingsAcivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -44,12 +44,13 @@
             android:layout_marginBottom="4dp"
             app:singleSelection="true"
             app:selectionRequired="true"
-            android:id="@+id/MBGroupTemp"
+            android:id="@+id/groupTemp"
             android:layout_gravity="end">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/degreeC"
                 android:layout_width="0dp"
+                android:tag="C"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/c"
@@ -57,6 +58,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/degreeF"
                 android:layout_width="0dp"
+                android:tag="F"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/f"
@@ -90,7 +92,7 @@
             android:layout_marginBottom="4dp"
             app:singleSelection="true"
             app:selectionRequired="true"
-            android:id="@+id/MBGroupWind"
+            android:id="@+id/groupWind"
             android:layout_gravity="end">
 
             <com.google.android.material.button.MaterialButton
@@ -136,7 +138,7 @@
             android:layout_marginBottom="4dp"
             app:singleSelection="true"
             app:selectionRequired="true"
-            android:id="@+id/MBGroupPressure"
+            android:id="@+id/groupPressure"
             android:layout_gravity="end">
 
             <com.google.android.material.button.MaterialButton

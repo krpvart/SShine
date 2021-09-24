@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShine">
         <activity
-            android:name=".activity_settings"
+            android:name=".SettingsAcivity"
             android:exported="true" />
         <activity
             android:name=".view.MenuActivity"

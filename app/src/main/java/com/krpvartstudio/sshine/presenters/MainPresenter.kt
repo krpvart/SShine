@@ -1,7 +1,5 @@
 package com.krpvartstudio.sshine.presenters
 
-
-import android.util.Log
 import com.krpvartstudio.sshine.business.ApiProvider
 import com.krpvartstudio.sshine.business.repos.MainRepository
 import com.krpvartstudio.sshine.view.MainView
@@ -15,7 +13,6 @@ class MainPresenter: BasePresenter<MainView>() {
         repo.dataEmitter
             .doAfterNext{viewState.setLoading(false)}
             .subscribe { response ->
-            Log.d("MAINREPO", "PRESENTER ENABLED $response")
             viewState.displayLocation(response.cityName)
             viewState.displayCurentData(response.weatherData)
             viewState.displayDailyData(response.weatherData.daily)

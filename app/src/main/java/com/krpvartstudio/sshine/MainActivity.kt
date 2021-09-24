@@ -4,28 +4,19 @@ import android.content.Intent
 import android.graphics.Point
 import android.location.Location
 import android.os.Bundle
-import android.util.Log
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
-import com.krpvartstudio.sshine.databinding.ActivityMainBinding
-import com.krpvartstudio.sshine.databinding.ItemMainDailyBinding
-import com.krpvartstudio.sshine.databinding.ItemMainHourlyBinding
 import com.krpvartstudio.sshine.business.model.DailyWeatherListModel
-import com.krpvartstudio.sshine.business.model.GeoCodeModel
 import com.krpvartstudio.sshine.business.model.MainHourListModel
 import com.krpvartstudio.sshine.business.model.WeatherDataModel
-import com.krpvartstudio.sshine.databinding.ActivityMenuBinding
 import com.krpvartstudio.sshine.presenters.MainPresenter
 import com.krpvartstudio.sshine.view.*
-import com.krpvartstudio.sshine.view.adapters.MainDailyListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import com.krpvartstudio.sshine.view.adapters.MainHourListAdapter
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import java.lang.StringBuilder
@@ -44,13 +35,9 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         initBottomSheets()
-
-
         refresh.isRefreshing = true
         supportFragmentManager.beginTransaction().add(R.id.frameContainer,DailyListFragment(),DailyListFragment::class.simpleName).commit()
-
         if(!intent.hasExtra("COORDINATES")){
             geoService.requestLocationUpdates(locationRequest,geoCallback,null)
         }else{
@@ -61,17 +48,18 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             mLocation = loc
             mainPresenter.refresh(lat = mLocation.latitude.toString(), lon = mLocation.longitude.toString())
         }
-
-            main_menu_btn.setOnClickListener{
+        main_menu_btn.setOnClickListener{
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, android.R.anim.fade_out)
         }
-            main_settings_btn.setOnClickListener{
+        main_settings_btn.setOnClickListener{
+                val intent = Intent(this, SettingsAcivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_right, android.R.anim.fade_out)
 
             }
-
-            main_hourly_list.apply {
+        main_hourly_list.apply {
             adapter = MainHourListAdapter()
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
@@ -95,7 +83,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             main_weather_image.setImageResource(R.mipmap.cloud3x)
             main_weather_icon.setImageResource(current.weather[0].icon.provideIcon())
             main_weather_description_tv.text = current.weather[0].description
-            main_temp_txt.text = current.temp.toDegre()
+            main_temp_txt.text = StringBuilder().append(current.temp.toDegre()).append("\u00B0").toString()
             daily[0].apply {
                main_max_temp_tv.text = temp.max.toDegre()
                main_min_temp_tv.text = temp.min.toDegre()

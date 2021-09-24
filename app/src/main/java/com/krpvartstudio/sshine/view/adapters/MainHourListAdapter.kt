@@ -20,7 +20,7 @@ class MainHourListAdapter : BaseAdapter<MainHourListModel>() {
         override fun bindView(position: Int) {
             mData[position].apply {
                 itemMainHourlyBinding.mainHourlyTimeTv.text = dt.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
-                itemMainHourlyBinding.mainHourlyTempTv.text = StringBuilder().append(temp.toDegre()).append(" \u00B0").toString()
+                itemMainHourlyBinding.mainHourlyTempTv.text = StringBuilder().append(temp.toDegre()).append("\u00B0").toString()
                 itemMainHourlyBinding.mainHourlyPopTv.text = pop.toPercentString(" %")
                 itemMainHourlyBinding.mainHourlyImageIco.setImageResource(weather[0].icon.provideIcon())
             }

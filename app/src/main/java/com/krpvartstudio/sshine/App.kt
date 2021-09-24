@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Intent
 import androidx.room.Room
 import com.krpvartstudio.sshine.business.room.OpenWeatherDatabase
+import com.krpvartstudio.sshine.view.SettingsHolder
 
 const val APP_SETTINGS = "App settings"
 const val IS_STARTED_UP = "Is started up"
@@ -25,6 +26,8 @@ class App : Application() {
             .build()
 
         val preferences = getSharedPreferences(APP_SETTINGS, MODE_PRIVATE)
+
+        SettingsHolder.onCreate(preferences)
         val flag = preferences.contains(IS_STARTED_UP)
 
         if(!flag){
