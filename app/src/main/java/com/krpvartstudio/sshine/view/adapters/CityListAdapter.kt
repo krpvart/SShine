@@ -18,8 +18,8 @@ class CityListAdapter: BaseAdapter<GeoCodeModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityListHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val itemCityListBinding = ItemMenuCitylistBinding.inflate(layoutInflater, parent,false)
-        return CityListHolder(itemCityListBinding.root)
+        val itemMenuCitylistBinding = ItemMenuCitylistBinding.inflate(layoutInflater, parent,false)
+        return CityListHolder(itemMenuCitylistBinding)
     }
 
     interface SearchItemClickListener{
@@ -32,13 +32,13 @@ class CityListAdapter: BaseAdapter<GeoCodeModel>() {
 
     }
 
-    inner class CityListHolder(view: View): BaseViewHolder(view){
+    inner class CityListHolder(private val itemMenuCitylistBinding: ItemMenuCitylistBinding): BaseViewHolder(itemMenuCitylistBinding.root){
 
         override fun bindView(position: Int) {
-            itemView.location.setOnClickListener {
+            itemMenuCitylistBinding.location.setOnClickListener {
                 clickListener.showWeatherIn(mData[position])
             }
-            itemView.favorite.setOnClickListener{
+            itemMenuCitylistBinding.favorite.setOnClickListener{
                 val item = mData[position]
                 when((it as MaterialButton).isChecked){
                     true->{
@@ -52,15 +52,15 @@ class CityListAdapter: BaseAdapter<GeoCodeModel>() {
                 }
             }
             mData[position].apply {
-                itemView.state.text = if(!state.isNullOrEmpty()) itemView.context.getString(R.string.comma, state) else ""
-                itemView.search_City.text = when(Locale.getDefault().displayLanguage){
+                itemMenuCitylistBinding.state.text = if(!state.isNullOrEmpty()) itemMenuCitylistBinding.root.context.getString(R.string.comma, state) else ""
+                itemMenuCitylistBinding.searchCity.text = when(Locale.getDefault().displayLanguage){
                     "русский" -> local_names.ru?:name
                     "English" -> local_names.en?:name
                     else -> name
                 }
 
-                itemView.search_Country.text = Locale("",country).displayLanguage
-                itemView.favorite.isChecked = isFavorite
+                itemMenuCitylistBinding.searchCountry.text = Locale("",country).displayLanguage
+                itemMenuCitylistBinding.favorite.isChecked = isFavorite
 
 
             }

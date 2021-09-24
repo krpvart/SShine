@@ -39,7 +39,7 @@ class MenuActivity : MvpAppCompatActivity(), MenuView{
             .debounce (700, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{
-                if (!it.isNullOrEmpty()) presenter.searchForIt(it)
+                if (!it.isNullOrEmpty() && it.length>3) presenter.searchForIt(it)
             }
     }
 
@@ -60,7 +60,7 @@ class MenuActivity : MvpAppCompatActivity(), MenuView{
     }
 
     override fun fillFavoriteList(data: List<GeoCodeModel>) {
-        (predictions.adapter as CityListAdapter).updateData(data)
+        (favorites.adapter as CityListAdapter).updateData(data)
     }
     //-----moxy code----->
 

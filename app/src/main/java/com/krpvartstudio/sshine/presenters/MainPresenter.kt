@@ -12,7 +12,9 @@ class MainPresenter: BasePresenter<MainView>() {
     private val repo = MainRepository(ApiProvider())
 
     override fun enable() {
-        repo.dataEmitter.subscribe { response ->
+        repo.dataEmitter
+            .doAfterNext{viewState.setLoading(false)}
+            .subscribe { response ->
             Log.d("MAINREPO", "PRESENTER ENABLED $response")
             viewState.displayLocation(response.cityName)
             viewState.displayCurentData(response.weatherData)

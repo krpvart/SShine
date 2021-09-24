@@ -13,6 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/main_menu_btn"
             style="@style/IconButtonStyle"
@@ -336,6 +350,7 @@
         android:layout_gravity="end">
 
         <LinearLayout
+            android:id="@+id/main_bottom_sheets_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="16dp"

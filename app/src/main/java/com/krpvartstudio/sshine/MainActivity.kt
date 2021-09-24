@@ -1,9 +1,11 @@
 package com.krpvartstudio.sshine
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Point
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.LocationCallback
@@ -27,6 +29,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import java.lang.StringBuilder
+import kotlin.math.roundToInt
 
 
 class MainActivity : MvpAppCompatActivity(), MainView {
@@ -41,6 +44,11 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        initBottomSheets()
+        initSwipeRefresh()
+
+        refresh.isRefreshing = true
         supportFragmentManager.beginTransaction().add(R.id.frameContainer,DailyListFragment(),DailyListFragment::class.simpleName).commit()
 
         if(!intent.hasExtra("COORDINATES")){
@@ -121,7 +129,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     override fun setLoading(flag: Boolean) {
-
+        refresh.isRefreshing = flag
     }
 
 
@@ -151,6 +159,25 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     //-----Location code----->
+
+    private fun initBottomSheets() {
+        main_bottom_sheet.isNestedScrollingEnabled = true
+        val size = Point()
+        windowManager.defaultDisplay.getSize(size)
+        main_bottom_sheets_container.layoutParams =
+            CoordinatorLayout.LayoutParams(size.x, (size.y * 0.5).roundToInt())
+
+    }
+
+    private fun initSwipeRefresh(){
+        refresh.apply{
+            setColorSchemeResources(R.color.purple_700)
+            setProgressViewEndTarget(false, 280)
+            setOnRefreshListener {
+                mainPresenter.refresh(mLocation!!.latitude.toString(), mLocation!!.longitude.toString())
+            }
+        }
+    }
 
 
 }
