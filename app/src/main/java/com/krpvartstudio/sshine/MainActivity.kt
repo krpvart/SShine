@@ -1,15 +1,16 @@
 package com.krpvartstudio.sshine
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.IntentSender
 import android.graphics.Point
 import android.location.Location
 import android.os.Bundle
+import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
+import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.gms.location.*
+import com.google.android.gms.tasks.CancellationTokenSource
 import com.krpvartstudio.sshine.business.model.DailyWeatherListModel
 import com.krpvartstudio.sshine.business.model.MainHourListModel
 import com.krpvartstudio.sshine.business.model.WeatherDataModel
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import com.krpvartstudio.sshine.view.adapters.MainHourListAdapter
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
+import java.lang.Exception
 import java.lang.StringBuilder
 import kotlin.math.roundToInt
 
@@ -26,7 +28,7 @@ import kotlin.math.roundToInt
 class MainActivity : MvpAppCompatActivity(), MainView {
 
     private val mainPresenter by moxyPresenter { MainPresenter() }
-
+    private val tokenSourse: CancellationTokenSource = CancellationTokenSource()
     private val geoService by lazy { LocationServices.getFusedLocationProviderClient(this) }
     private val locationRequest by lazy { initLocationRequest() }
     private lateinit var mLocation:Location
@@ -38,8 +40,12 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         initBottomSheets()
         refresh.isRefreshing = true
         supportFragmentManager.beginTransaction().add(R.id.frameContainer,DailyListFragment(),DailyListFragment::class.simpleName).commit()
+
+
         if(!intent.hasExtra("COORDINATES")){
-            geoService.requestLocationUpdates(locationRequest,geoCallback,null)
+            checkGeoAvailability()
+//            geoService.requestLocationUpdates(locationRequest,geoCallback,null)
+            getGeo()
         }else{
             val coord = intent.extras!!.getBundle("COORDINATES")!!
             val loc = Location("")
@@ -109,7 +115,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     override fun displayError(error: Throwable) {
-
+        Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
     }
 
     override fun setLoading(flag: Boolean) {
@@ -123,6 +129,37 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
 
     //<-----Location code-----
+    @SuppressLint("MissingPermission")
+    private fun getGeo(){
+        geoService
+            .getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY,tokenSourse.token)
+            .addOnSuccessListener {
+                if(it!=null){
+                    mLocation = it
+                    mainPresenter.refresh(mLocation.latitude.toString(), mLocation.longitude.toString())
+                }else{
+                    displayError(Exception("Geodata is not available"))
+                }
+            }
+    }
+
+    private fun checkGeoAvailability(){
+        val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+        val client = LocationServices.getSettingsClient(this)
+        val task = client.checkLocationSettings(builder.build())
+        task.addOnFailureListener{ exception ->
+            if(exception is ResolvableApiException){
+                try {
+                    exception.startResolutionForResult(this,100)
+                }catch (sendEx: IntentSender.SendIntentException){}
+            }
+        }
+    }
+
+
+
+
+
     private fun initLocationRequest(): LocationRequest {
         val request = LocationRequest.create()
         return request.apply {
@@ -132,15 +169,15 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         }
     }
 
-    private val geoCallback = object : LocationCallback() {
-        override fun onLocationResult(geo: LocationResult) {
-            for (location in geo.locations){
-                mLocation = location;
-                mainPresenter.refresh(mLocation.latitude.toString(), mLocation.longitude.toString())
-
-            }
-        }
-    }
+//    private val geoCallback = object : LocationCallback() {
+//        override fun onLocationResult(geo: LocationResult) {
+//            for (location in geo.locations){
+//                mLocation = location;
+//                mainPresenter.refresh(mLocation.latitude.toString(), mLocation.longitude.toString())
+//
+//            }
+//        }
+//    }
 
     //-----Location code----->
 

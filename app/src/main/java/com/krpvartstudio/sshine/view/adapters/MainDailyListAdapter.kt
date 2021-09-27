@@ -3,6 +3,7 @@ package com.krpvartstudio.sshine.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.krpvartstudio.sshine.R
 import com.krpvartstudio.sshine.databinding.ItemMainDailyBinding
 import com.krpvartstudio.sshine.business.model.DailyWeatherListModel
@@ -25,8 +26,22 @@ class MainDailyListAdapter : BaseAdapter<DailyWeatherListModel>() {
     }
 
     inner class DailyViewHolder(private val itemMainDailyBinding: ItemMainDailyBinding) : BaseViewHolder(itemMainDailyBinding.root) {
+
+
     override fun bindView(position: Int) {
         val itemData = mData[position]
+       // val defaultTextColor = itemMainDailyBinding.itemDailyDateTv.textColors
+        if(position==0){
+            this.setIsRecyclable(false)
+            itemMainDailyBinding.itemDailyDateTv.setTextColor(ContextCompat.getColor(itemMainDailyBinding.itemDailyDateTv.context,R.color.purple_500))
+        }
+
+//        if (position==0){itemMainDailyBinding.itemDailyDateTv
+//            .setTextColor(ContextCompat.getColor(itemMainDailyBinding.itemDailyDateTv.context,R.color.purple_500))}
+//        else{
+//            itemMainDailyBinding.itemDailyDateTv.setTextColor(defaultTextColor)
+//        }
+
         itemMainDailyBinding.dayContainer.setOnClickListener {
             clickListener.showDetails(itemData)
         }
